@@ -20,9 +20,9 @@ function updateDiningOptionsListener(changed, collection, shortcode) {
     if ('list' === updatedVal)  {
         category.$el.show();
         title.$el.show();
-    // } else if ('full' === updatedVal)  {
-    //     category.$el.hide();
-    //     title.$el.hide();
+    } else if ('full' === updatedVal)  {
+        category.$el.hide();
+        title.$el.hide();
     } else if ('list' !== updatedVal)  {
         category.$el.hide();
         title.$el.hide();

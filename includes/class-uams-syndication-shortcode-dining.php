@@ -36,6 +36,8 @@ class UAMS_Syndicate_Shortcode_Dining {
 		$post = get_post();
 	 	if ( isset( $post->post_content ) && has_shortcode( $post->post_content, 'uamswp_dining' ) ) {
 			wp_enqueue_style( 'uamswp-syndication-dining-style', plugins_url( '/css/uamswp-syndication-dining.css', __DIR__ ), array(), '' );
+			wp_enqueue_style( 'uamswp-syndication-dining-lity', plugins_url( '/css/lity.min.css', __DIR__ ), array(), '' );
+			wp_enqueue_script( 'uamswp-syndication-dining-lity-js', plugins_url( '/js/lity.min.js', __DIR__ ), array(), '' );
 		}
 	}
  
@@ -155,9 +157,9 @@ class UAMS_Syndicate_Shortcode_Dining {
 			$category = $attributes->cat;
 		}
 
-		$type = 'list';
-		if (isset($attributes->type)){
-			$type = $attributes->type;
+		$output = 'list';
+		if (isset($attributes->output)){
+			$output = $attributes->output;
 		}
 		
 		$showtitle = '';
@@ -178,7 +180,7 @@ class UAMS_Syndicate_Shortcode_Dining {
 			// ...otherwise, read the information provided by dining
 		} else {
 
-			$html = '<div id="dining-content">';
+			$html = '<div id="dining-content '. $type .'">';
 			$curentCat = '';
 			$dining_length = count($json_response);
 			$i = 1;
@@ -208,7 +210,7 @@ class UAMS_Syndicate_Shortcode_Dining {
 				$Potassium = $item["Potassium"] ? $item["Potassium"] . 'mg' : 'N/A';
 
 				
-				if($FoodID && 'list' == $type)	 {
+				if($FoodID && 'list' == $output)	 {
 					if($category == $CategoryID || empty($category)){
 						if ( $curentCat != $CategoryID && (empty($category) || $showtitle ) ) {
 							$html .= '<h4 id="categoryid-'.$CategoryID.'">' . $CategoryName . "</h4>";
@@ -226,12 +228,12 @@ class UAMS_Syndicate_Shortcode_Dining {
 					} elseif ($i==$dining_length-1 && $dining_count == 0) { //Reached end & no items matched
 						$html .= "No items match";
 					}
-				} elseif ($FoodID && 'full' == $type) {
+				} elseif ($FoodID && 'full' == $output) {
 					if($category == $CategoryID || empty($category)){
 						if ($curentCat != $CategoryID && (empty($category) || $showtitle ) ) {
 							$html .= '<h4>' . $CategoryName . "</h4>";
 						}
-						$html .= $Food;
+						$html .= '<p>'. $Food;
 						$html .= $HeartHealthy;
 						$html .= $Vegetarian;
 						$html .= $Spicy;
@@ -239,17 +241,70 @@ class UAMS_Syndicate_Shortcode_Dining {
 						$html .= $Nut;
 						$html .= $Soy;
 						$html .= $Dairy;
-						$html .= $Seafood . "<br/>";
-						$html .= $PortionSize;
-						$html .= $Grams . "<br/>";
-						$html .= $Calories . "<br/>";
-						$html .= $Fat . "<br/>";
-						$html .= $Cholesterol  . "<br/>";
-						$html .= $Sodium . "<br/>";
-						$html .= $Carbs . "<br/>";
-						$html .= $Fiber . "<br/>";
-						$html .= $Protein . "<br/>";
-						$html .= $Potassium . "<br/>";
+						$html .= $Seafood;
+						$html .= '<br/><small><a href="#nutrition_modal_'. $item["FoodID"] .'" data-lity>Nutrition Information</a></small></p>';
+						// $html .= $PortionSize;
+						// $html .= $Grams . "<br/>";
+						// $html .= $Calories . "<br/>";
+						// $html .= $Fat . "<br/>";
+						// $html .= $Cholesterol  . "<br/>";
+						// $html .= $Sodium . "<br/>";
+						// $html .= $Carbs . "<br/>";
+						// $html .= $Fiber . "<br/>";
+						// $html .= $Protein . "<br/>";
+						// $html .= $Potassium . "<br/>";
+						$html .= '<div id="nutrition_modal_'. $item["FoodID"] . '" style="overflow:auto;background:#fff;padding:20px;width:600px;max-width:100%;border-radius:6px" class="lity-hide">
+									  <h2>NUTRITION FACTS</h2>
+									  <table width="100%" cellspacing="0" cellpadding="3" align="center">
+											<tbody>
+											<tr style="border-bottom: 2px solid black;">
+												<td align="center">Serving Size</td>
+													<td>&nbsp;</td>
+													<td align="center"> '. $PortionSize . $Grams .'</td>
+												</tr>
+												<tr style="border-bottom: 2px solid black;">
+													<td align="center"><h4 style="font-weight: 900; margin: 2px 0;">Calories</h4></td>
+													<td>&nbsp;</td>
+													<td align="center"><h4 style="font-weight: 900; margin: 2px 0;">'. $Calories .'</h4></td>
+												</tr>
+												<tr>
+													<td align="right"><strong>Fat</strong></td>
+													<td>&nbsp;</td>
+													<td>'. $Fat .'</td>
+												</tr>
+												<tr>
+													<td align="right"><strong>Cholesterol</strong></td>
+													<td>&nbsp;</td>
+													<td>'. $Cholesterol .'</td>
+												</tr>
+												<tr>
+													<td align="right"><strong>Sodium</strong></td>
+													<td>&nbsp;</td>
+													<td>'. $Sodium .'</td>
+												</tr>
+												<tr>
+													<td align="right"><strong>Carbs</strong></td>
+													<td>&nbsp;</td>
+													<td>'. $Carbs .'</td>
+												</tr>
+												<tr>
+													<td align="right">Fiber</td>
+													<td>&nbsp;</td>
+													<td>'. $Fiber .'</td>
+												</tr>
+												<tr>
+													<td align="right">Protein</td>
+													<td>&nbsp;</td>
+													<td>'. $Protein .'</td>
+												</tr>
+												<tr>
+													<td align="right">Potassium</td>
+													<td>&nbsp;</td>
+													<td>'. $Potassium .'</td>
+												</tr>
+										</tbody>
+									</table>
+								</div>';
 						$dining_count = 1;
 					} elseif ($i==$dining_length-1 && $dining_count == 0) { //Reached end & no items matched
 						$html .= "No items match";
@@ -258,6 +313,13 @@ class UAMS_Syndicate_Shortcode_Dining {
 				$curentCat = $CategoryID;
 				$i++;
 			} // end foreach
+			$html .= '<hr/><h4>Key: </h4>
+			<div class="row">
+				<div class="col-sm-6 col-md-3"><span class="uams-icon-heart" style="color:red;" rel="tooltip" title="" data-original-title="Heart Healthy"></span> : Heart Healthy</div><div class="col-sm-6 col-md-3"><span class="uams-icon-leaves10" style="color:green;" rel="tooltip" title="" data-original-title="Vegetarian"></span> : Vegetarian</div><div class="col-sm-6 col-md-3"><span class="uams-icon-fire" style="color:red;" rel="tooltip" title="" data-original-title="Spicy"></span> : Spicy</div><div class="col-sm-6 col-md-3"><span class="uams-icon-glutenfree" style="color:peru;" rel="tooltip" title="" data-original-title="Gluten Friendly"></span> : Gluten Friendly</div>
+			</div>
+			<div class="row">
+	    		<div class="col-sm-6 col-md-3"><span class="uams-icon-peanut" style="color:darkgoldenrod;" rel="tooltip" title="" data-original-title="Nut Allergy"></span> : Nut Allergy</div><div class="col-sm-6 col-md-3"><span class="uams-icon-peas" style="color:green;" rel="tooltip" title="" data-original-title="Soy Allergy"></span> : Soy Allergy</div><div class="col-sm-6 col-md-3"><span class="uams-icon-fresh7" rel="tooltip" title="" data-original-title="Dairy Allergy"></span> : Dairy Allergy</div><div class="ccol-sm-6 col-md-3"><span class="uams-icon-fish51" style="color:DarkOliveGreen;" rel="tooltip" title="" data-original-title="Seafood"></span> : Seafood</div>
+        	</div>'; // Add icon key
 			$html .= '</div>
 					<!-- /#dining-content -->';
 		} // end if/else
