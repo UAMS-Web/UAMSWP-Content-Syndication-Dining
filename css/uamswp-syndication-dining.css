@@ -1,0 +1,188 @@
+@font-face {
+	font-family: 'uams-menu';
+	src:url('../fonts/uams-menu.eot?-4fp566');
+	src:url('../fonts/uams-menu.eot?#iefix-4fp566') format('embedded-opentype'),
+		url('../fonts/uams-menu.woff?-4fp566') format('woff'),
+		url('../fonts/uams-menu.ttf?-4fp566') format('truetype'),
+		url('../fonts/uams-menu.svg?-4fp566#uams-menu') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="uams-icon-"], [class*=" uams-icon-"] {
+	font-family: 'uams-menu';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.uams-icon-glutenfree:before {
+	content: "\e600";
+}
+
+.uams-icon-wheat:before {
+	content: "\e601";
+}
+
+.uams-icon-peanut:before {
+	content: "\e602";
+}
+
+.uams-icon-pepper:before {
+	content: "\e603";
+}
+
+.uams-icon-peas:before {
+	content: "\e604";
+}
+
+.uams-icon-location-2:before {
+	content: "\e800";
+}
+
+.uams-icon-direction-1:before {
+	content: "\e801";
+}
+
+.uams-icon-compass-2:before {
+	content: "\e802";
+}
+
+.uams-icon-leaf:before {
+	content: "\e803";
+}
+
+.uams-icon-star:before {
+	content: "\e804";
+}
+
+.uams-icon-cogs:before {
+	content: "\e808";
+}
+
+.uams-icon-wrench:before {
+	content: "\e809";
+}
+
+.uams-icon-coffee:before {
+	content: "\e80a";
+}
+
+.uams-icon-food:before {
+	content: "\e80b";
+}
+
+.uams-icon-tint:before {
+	content: "\e80c";
+}
+
+.uams-icon-fire-2:before {
+	content: "\e80d";
+}
+
+.uams-icon-box44:before {
+	content: "\e80e";
+}
+
+.uams-icon-fresh7:before {
+	content: "\e80f";
+}
+
+.uams-icon-sprig1:before {
+	content: "\e810";
+}
+
+.uams-icon-leaves10:before {
+	content: "\e812";
+}
+
+.uams-icon-leaf3:before {
+	content: "\e813";
+}
+
+.uams-icon-fish51:before {
+	content: "\e814";
+}
+
+.uams-icon-fish49:before {
+	content: "\e815";
+}
+
+.uams-icon-calendar:before {
+	content: "\e81f";
+}
+
+.uams-icon-compass:before {
+	content: "\e835";
+}
+
+.uams-icon-direction:before {
+	content: "\e836";
+}
+
+.uams-icon-location:before {
+	content: "\e837";
+}
+
+.uams-icon-heart:before {
+	content: "\e84d";
+}
+
+.uams-icon-food-1:before {
+	content: "\e84e";
+}
+
+.uams-icon-apple:before {
+	content: "\e858";
+}
+
+.uams-icon-compass-circled:before {
+	content: "\e866";
+}
+
+.uams-icon-compass-1:before {
+	content: "\e867";
+}
+
+.uams-icon-location-circled:before {
+	content: "\e868";
+}
+
+.uams-icon-location-1:before {
+	content: "\e869";
+}
+
+.uams-icon-calendar-circled:before {
+	content: "\e86e";
+}
+
+.uams-icon-calendar-1:before {
+	content: "\e86f";
+}
+
+.uams-icon-gift-1:before {
+	content: "\e872";
+}
+
+.uams-icon-key-1:before {
+	content: "\e873";
+}
+
+.uams-icon-key-2:before {
+	content: "\e878";
+}
+
+.uams-icon-fire:before {
+	content: "\e87a";
+}
+
+.uams-icon-fire-1:before {
+	content: "\e87b";
+}
